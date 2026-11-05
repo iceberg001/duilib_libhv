@@ -1,0 +1,112 @@
+#include "link_data.jce"
+
+module node
+{
+	const string LINK_TYPE_NODE_UI_CHANGE				= "link_data_node_ui_change";				//Node界面变化通知			node::NodeUIData
+	const string LINK_TYPE_NODE_SET_STOCK				= "link_data_node_set_stock";				//给Node设置股票			plg::BaseData
+	const string LINK_TYPE_NODE_KLINE_ADD_STOCK			= "link_data_node_kline_add_stock";			//k线股票叠加				plg::BaseData
+	const string LINK_TYPE_NODE_KLINE_DEL_STOCK			= "link_data_node_kline_del_stock";			//k线股票删除叠加			plg::BaseData
+	const string LINK_TYPE_NODE_SELECT_STOCK			= "link_data_node_select_stock";			//Node列表股票选中			plg::BaseData
+	const string LINK_TYPE_NODE_UPDATE_STOCK			= "link_data_node_update_stock";			//Node通知上层股票变化		plg::BaseData
+	const string LINK_TYPE_NODE_WEB_OPEN_PDF			= "link_data_node_web_openpdf";				//Node通知打开网页pdf
+	const string LINK_TYPE_NODE_SELECT_ZB				= "link_data_node_select_zb";				//Node通知选择了指标		node::NodeSelectZBData
+	const string LINK_TYPE_NODE_OPEN_PAGE				= "link_data_node_open_page";				//Node通知选上层打开功能页	node::NodeOpenPageData
+	const string LINK_TYPE_NODE_SET_ZB					= "link_data_node_set_zb";					//给Node设置指标			node::NodeSetZB
+	const string LINK_TYPE_NODE_RESTORE_SELECTION		= "link_data_node_restore_selection";		//恢复Node选中态			none
+	const string LINK_TYPE_NODE_ADD_RIGHT_MENU			= "link_data_node_add_right_menu";			//添加自定义右键菜单
+	const string LINK_TYPE_NODE_ZXG						= "link_data_node_zxg";						//自选股相关
+	const string LINK_TYPE_NODE_SWITCH_MULTISHARE		= "link_data_node_switch_multishare";		//切换多股同列
+	const string LINK_TYPE_NODE_MULTISCREEN_LINKAGE 	= "link_data_node_multiscreen_linkage";		//多屏联动
+	const string LINK_TYPE_NODE_URL_CMD_PARAM 			= "link_data_node_url_cmd_param";			//给Node传递伪协议url里附带的自定义参数kv  node::NodeMapParam
+	const string LINK_TYPE_NODE_SELECT_BK			    = "link_data_node_select_bk";			    //Node列表板块选中			plg::BaseData
+	const string LINK_TYPE_NODE_LOGIN_STATUS_CHANGED 	= "link_data_node_login_status_changed";	//通知node登录状态改变    参数 bool  L2/L1
+	const string LINK_TYPE_NODE_STOCK_ZT_STATE 			= "link_data_node_zt_state";				//通知node当前股票涨停状态    参数 bool  是否涨停	
+	const string LINK_TYPE_NODE_TIME_CHANGE 			= "link_data_node_time_change";				//Node时间变化通知
+	const string LINK_TYPE_NODE_SWITCH_MARKET 			= "link_data_node_switch_market";			//通知node更换市场请求    先用于南向北向切换	
+	const string LINK_TYPE_NODE_NAVIGATION_SELECT 		= "link_data_node_navigation_select";		//通知node导航栏选中
+	const string LINK_TYPE_NODE_CLICK_DETAILS 			= "link_data_node_click_details";			//通知node查看明细
+	const string LINK_TYPE_NODE_WARRANT_EMPTY			= "link_data_node_Warrant_Empty";			//通知其他node，该正股没有关联的牛熊证
+	const string LINK_TYPE_NODE_SEARCH_CHANGE 			= "link_data_node_search_change";			//通知node搜索文字改变
+	const string LINK_TYPE_NODE_LHB_RANK_SEASON_SELECT 	= "link_data_node_lhb_rank_reason_select";	//通知node龙虎榜上榜原因列表选中
+	const string LINK_TYPE_NODE_DATE_CHANGE 	        = "link_data_node_date_change";	            //通知node日期发生变化
+	const string LINK_TYPE_NODE_TRANS					= "link_data_node_trans";					//给Node传输数据				
+	const string LINK_TYPE_NODE_VISIBLE_CHANGE			= "link_data_node_visible_change";			//Node 可见消息	
+	const string LINK_TYPE_NODE_SELECT_BLOCK			= "link_data_node_select_block";			//板块排名发送的选中消息		plg::BaseData
+	const string LINK_TYPE_NODE_OTHERNODE_SHOW			="link_data_node_othernode_show";			//全屏显示
+	const string LINK_TYPE_NODE_OTHERNODE_HIDE			="link_data_node_othernode_hide";			//全屏隐藏
+	const string LINK_TYPE_NODE_OPEN_ZBTREE				="link_data_node_open_zbtree";				//K线左侧显隐
+	const string LINK_TYPE_NODE_OPEN_STOCKINFO			="link_data_node_open_stockinfo";			//K线右侧隐藏	
+	const string LINK_TYPE_NODE_SET_STOCK_IN_TRADE		= "link_data_node_set_stock_in_trade";		//在交易模式下给Node设置股票			plg::BaseData
+	const string LINK_TYPE_NODE_SET_ZB_TEMPLATE			= "link_data_node_set_zb_template";			//设置指标模板
+	const string LINK_TYPE_NODE_FSCHART_SHOW			= "link_data_node_fschart_show";			//分时图显示或隐藏
+	const string LINK_TYPE_NODE_ZXG_GROUP_CHANGE		= "link_data_node_zxg_group_change";		//自选股分组变化 see@ZxgSetGroup
+	const string LINK_TYPE_NODE_OPEN_DIAGNOSE			= "link_data_node_open_diagnose";			//发送个股诊断		node::NodeMapParam
+	const string LINK_TYPE_NODE_ZT_BLOCKINFO			= "link_data_node_zt_blockinfo";			//发送涨停题材消息		FuPan::FBlockZTData
+
+    struct NodeUIData {
+        1 optional plg::BaseData 	stk;  		//股票信息
+		2 optional int 				width;		//node控件宽度
+		3 optional int 				height;		//node控件高度
+    };
+	
+	struct NodeSetGroup {
+        1 optional int 	group_id;  		//分组id
+    };
+
+	struct ZxgSetGroup {
+        1 optional int 	group_id;  		//分组id
+    };
+	
+	struct NodeSelectZBData {
+        1 optional int			zb_set;  		//指标set
+		2 optional string		zb_name;		//指标名
+		3 optional string		msg_type;		//指标树操作类型
+    };
+	
+    struct NodeWebData {
+        1 optional string 		jscode;  		
+    };
+    
+    struct NodeOpenPageData {
+    	1 optional plg::BaseData 	stk;  		//股票信息
+        2 optional string 			page_name;  		
+    };
+	
+	//给node设置指标
+	struct NodeSetZB {
+    	1 optional int 			index_set;	//指标类型
+        2 optional string 		zb_key;  	//指标key
+		//以下三个字段是以源码模式添加指标时需要填充的字段
+        3 optional string 		zb_src;  	//指标源码
+		4 optional string		sub_title;	//副标题
+		5 optional string		user_data;	//自定义数据
+		6 optional int			index_type;	//指标类别 0:k线/1:分时/2:通用
+		7 optional bool			main_zb;	//是否为主图指标
+    };
+	
+	//自定义右键菜单信息
+	struct NodeRightMenuItem {
+    	1 optional string 		menu_name;	//菜单显示名称
+        2 optional string 		menu_cmd;  	//菜单command
+		3 optional vector<int>	v_stock_type; //菜单项支持的个股类型 详见HQSys::E_STOCK_CATEGORY
+    };
+	
+	//给node添加自定义右键菜单数据
+	struct NodeRightMenuData {
+    	1 optional vector<NodeRightMenuItem>	v_data; //菜单项
+    };
+	
+	//node键值对参数
+	struct NodeMapParam {
+    	1 optional map<string, string>	kv; //键值对
+    };
+    
+    enum E_SH_NH_MARKET_TYPE {
+        E_MARKET_NORTH = 1, //北向
+        E_MARKET_SOUTH = 2, //南向
+        E_MARKET_HGT = 3, //沪股通
+        E_MARKET_SGT = 4, //深股通
+        E_MARKET_GGTSH = 5, //港股通(沪)
+        E_MARKET_GGTSZ = 6, //港股通(深)
+    };    
+};

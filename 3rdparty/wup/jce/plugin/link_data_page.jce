@@ -1,0 +1,39 @@
+#include "link_data.jce"
+
+module node
+{
+	const string LINK_TYPE_NODE_OPEN_CUSTOM_PAGE 						= "link_data_node_open_custom_page";		//通知框架层打开功能页
+	const string LINK_TYPE_NODE_BEFORE_CLOSE_CUSTOM_PAGE 		= "link_data_node_before_close_custom_page";		//通知框架层在关闭功能页前需要的处理
+	const string LINK_TYPE_NODE_CLOSE_CUSTOM_PAGE 					= "link_data_node_close_custom_page";		//通知上层关闭功能页
+	
+	//node键值对参数
+	struct NodeOpenCustomPage {
+    	1 optional string						url; 						//打开的功能页伪协议地址
+		2 optional int							market; 				
+		3 optional string						code; 
+		4 optional string						source_page_tag; 			//源功能页标签  用途：比如用于记录从哪个功能页打开个股
+		5 optional vector<plg::BaseData> 		v_stock;					//源功能页股票列表 用途：切到个股页面可以按列表的股票顺序通过快捷键切换股票
+		6 optional int							pot; 						//分时图K线图周期
+	};
+	
+	
+	
+	const string CUSTOM_OPEN_PAGE_PARAM_OPTION_TYPE 		=	"option_type" ;	//跳转到某个功能页 默认选中的option参数
+	
+	
+	enum SingleStockPageFunc {	
+		SingleStockPageFunc_OrderQueue,
+		SingleStockPageFunc_OwnerBlock,
+		SingleStockPageFunc_Fund,
+		SingleStockPageFunc_News,
+		SingleStockPageFunc_Notice,
+		SingleStockPageFunc_ResearchReport,
+		SingleStockPageFunc_HKWarrant,
+		SingleStockPageFunc_QuickTrade,
+		SingleStockPageFunc_Tf_Analyse,
+		SingleStockPageFunc_Tf_Fund,
+		SingleStockPageFunc_Tf_Finance,
+		SingleStockPageFunc_Tf_Info,
+		SingleStockPageFunc_Tf_Brief,
+	};
+};

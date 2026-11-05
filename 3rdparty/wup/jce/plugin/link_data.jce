@@ -1,0 +1,32 @@
+// 此jce文件定义插件间的联动通用数据
+// 业务插件间传递数据时，需定义类型和数据结构
+// 
+// 业务类型需保证唯一, 格式：jce文件名+"_"+type
+// 业务类型定义需有 数据描述及数据结构 的注释说明
+// 如: link_data_trade.jce
+//    const string LINK_TYPE_ACCOUNT = "link_data_trade_account";  // 单账号信息, ht::TradeAccount
+//    const string LINK_TYPE_MULTI_ACCOUNT = "link_data_trade_multiaccount";  // 多账号信息, ht::MultiAccount
+#include "../CommonData.jce"
+
+module plg
+{
+	//联动数据类型
+    const string LINK_TYPE_BASE = "base";  // 基础信息
+    
+    // 基础数据
+    struct BaseData {
+        1 optional short setcode;        // 市场
+        2 optional string code;          // 股票代码
+        3 optional string name;         //股票名称
+        4 optional string scope_type;   // 作用范围(可指定node的控件名字或者node的类名，值为空时默认生效;支持多个类型，用逗号分隔)
+        5 optional vector<HQSys::HStockUnique> vStock; //股票所在列表
+		6 optional int pot;				//分时或者K线图周期
+    };
+    
+    // 联动数据
+    struct LinkData
+    {
+        1 optional string type; // 联动类型, 必须保证全局唯一
+        2 optional vector<byte> data; //联动业务数据
+    };
+};

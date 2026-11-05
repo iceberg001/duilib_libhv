@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Window size="600,600" mininfo="600,600" caption="0,0,0,40" sizebox="4,4,6,6" roundcorner="8,8" showshadow="true" shadowdarkness="75" shadowsharpness="200" shadowcolor="0x000000" shadowsize="4">
+	<Font id="0" name="微软雅黑" size="13" />
+	<Font id="1" name="微软雅黑" size="12" />
+	<Font id="2" name="Consolas" size="12" />
+	<Font id="3" name="微软雅黑" size="14" bold="true" />
+
+	<!-- Default scrollbar style (dark theme) -->
+	<Default name="VScrollBar" value="width=&quot;10&quot; bkcolor=&quot;#FF313244&quot; thumbnormalimage=&quot;file='image/scrollbar_thumb.png' corner='2,2,2,2'&quot; thumbhotimage=&quot;file='image/scrollbar_thumb2.png' corner='2,2,2,2'&quot; thumbpushedimage=&quot;file='image/scrollbar_thumb2.png' corner='2,2,2,2'&quot;" />
+	<Default name="HScrollBar" value="height=&quot;10&quot; bkcolor=&quot;#FF313244&quot; thumbnormalimage=&quot;file='image/scrollbar_thumb.png' corner='2,2,2,2'&quot; thumbhotimage=&quot;file='image/scrollbar_thumb2.png' corner='2,2,2,2'&quot; thumbpushedimage=&quot;file='image/scrollbar_thumb2.png' corner='2,2,2,2'&quot;" />
+
+	<VerticalLayout bkcolor="#FF1A1B26">
+		<!-- ===== Title Bar ===== -->
+		<HorizontalLayout height="40" bkcolor="#FF7A7A7A" childvalign="vcenter">
+			<Container width="32" height="40" bkimage="file='image/logo.png' dest='8,8,28,28'" />
+			<Label text="网络接口调试工具" padding="0,0,0,0" font="1" textcolor="#FFFFFFFF" />
+			<HorizontalLayout />
+			<HorizontalLayout width="76" inset="0,0,0,0">
+				<Button name="minbtn" width="38" height="40" normalimage="file='image/min.png' source='0,0,25,25' dest='7,8,32,33'" hotimage="file='image/min.png' source='25,0,50,25' dest='7,8,32,33'" pushedimage="file='image/min.png' source='50,0,75,25' dest='7,8,32,33'" />
+				<Button name="closebtn" width="38" height="40" normalimage="file='image/close.png' source='0,0,25,25' dest='7,8,32,33'" hotimage="file='image/close.png' source='25,0,50,25' dest='7,8,32,33'" pushedimage="file='image/close.png' source='50,0,75,25' dest='7,8,32,33'" />
+			</HorizontalLayout>
+		</HorizontalLayout>
+
+		<!-- ===== Tab Bar ===== -->
+		<HorizontalLayout height="42" bkcolor="#FF1A1B26" inset="0,0,0,0">
+			<Option name="tab_http" text="HTTP" width="72" height="42" font="0" bkcolor="#FF313244" bordercolor="#FF45475A" bordersize="1" textcolor="#FFFFFFFF" selectedtextcolor="#FF89B4FA" textpadding="0,10,0,0" align="center" group="main_tab" selected="true" />
+			<Option name="tab_tcp"  text="TCP"  width="72" height="42" font="0" bkcolor="#FF313244" bordercolor="#FF45475A" bordersize="1" textcolor="#FFFFFFFF" selectedtextcolor="#FF89B4FA" textpadding="0,10,0,0" align="center" group="main_tab" />
+			<Option name="tab_udp"  text="UDP"  width="72" height="42" font="0" bkcolor="#FF313244" bordercolor="#FF45475A" bordersize="1" textcolor="#FFFFFFFF" selectedtextcolor="#FF89B4FA" textpadding="0,10,0,0" align="center" group="main_tab" />
+			<HorizontalLayout />
+		</HorizontalLayout>
+
+		<!-- Tab separator -->
+		<HorizontalLayout height="1" bkcolor="#FF313244" />
+
+		<!-- ===== Tab Content ===== -->
+		<TabLayout name="tab_content" height="300">
+			<!-- ===== HTTP Tab ===== -->
+			<VerticalLayout borderround="4,4" bkimage="image/control.png" inset="10,10,10,10">
+				<HorizontalLayout height="36" inset="0,0,0,8">
+					<Combo name="http_method" width="90" height="34" font="1" text="GET" textcolor="#FFFFFFFF" textpadding="5,0,0,0" itemtextcolor="#FFFFFFFF" itemselectedtextcolor="#FF89B4FA" itembkcolor="#FF1A1B26" itemselectedbkcolor="#FF313244" itemhotbkcolor="#FF313244" normalimage="file='image/combo.png' source='0,0,104,26' dest='0,0,104,26'" hotimage="file='image/combo.png' source='0,26,104,52' dest='0,0,104,26'" pushedimage="file='image/combo.png' source='0,52,104,78' dest='0,0,104,26'">
+						<ListLabelElement text="GET" height="28" selected="true"/>
+						<ListLabelElement text="POST" height="28" />
+						<ListLabelElement text="PUT" height="28" />
+						<ListLabelElement text="DELETE" height="28" />
+						<ListLabelElement text="PATCH" height="28" />
+					</Combo>
+					<Label width="8" />
+					<Edit name="http_url" font="1" bkcolor="#FF313244" bordercolor="#FF45475A" bordersize="1" text="http://127.0.0.1:8080/ping" textcolor="#FFFFFFFF" />
+					<Label width="8" />
+					<Button name="http_send" text="发  送" width="90" height="34" font="0" textcolor="#FFFFFFFF" normalimage="file='image/button-ok.png' source='0,0,98,34'" hotimage="file='image/button-ok.png' source='98,0,196,34'" pushedimage="file='image/button-ok.png' source='196,0,294,34'" />
+				</HorizontalLayout>
+				<Label text="Headers (每行 key: value)" height="20" font="1" textcolor="#FFFFFFFF" />
+				<RichEdit name="http_headers" multiline="true" autovscroll="true" rich="false" vscrollbar="true" hscrollbar="false" autohscroll="false" textcolor="#FFFFFFFF" bkcolor="#FF111827" bordercolor="#FF7A7A7A" bordersize="1"/>
+				<Label text="Body" height="20" font="1" textcolor="#FFFFFFFF" />
+				<RichEdit name="http_body" multiline="true" autovscroll="true" rich="false" vscrollbar="true" hscrollbar="false" autohscroll="false" textcolor="#FFFFFFFF" bkcolor="#FF111827" bordercolor="#FF7A7A7A" bordersize="1"/>
+
+			</VerticalLayout>
+
+			<!-- ===== TCP Tab ===== -->
+			<VerticalLayout borderround="4,4" bkimage="image/control.png" inset="10,10,10,10">
+				<HorizontalLayout height="36" inset="0,0,0,8">
+					<Label text="Host" width="36" font="1" textcolor="#FFFFFFFF" align="center" />
+					<Edit name="tcp_host" width="150" height="34" font="1" bkcolor="#FF313244" bordercolor="#FF45475A" bordersize="1" text="127.0.0.1" textcolor="#FFFFFFFF" />
+					<Label width="8" />
+					<Label text="Port" width="32" font="1" textcolor="#FFFFFFFF" align="center" />
+					<Edit name="tcp_port" width="64" height="34" font="1" numberonly="true" bkcolor="#FF313244" bordercolor="#FF45475A" bordersize="1" text="9000" textcolor="#FFFFFFFF" />
+					<Label width="8" />
+					<Combo name="tcp_mode" width="110" height="34" font="1" text="短连接同步" textcolor="#FFFFFFFF" textpadding="5,0,0,0" itemtextcolor="#FFFFFFFF" itemselectedtextcolor="#FF89B4FA" itembkcolor="#FF1A1B26" itemselectedbkcolor="#FF313244" itemhotbkcolor="#FF313244" normalimage="file='image/combo.png' source='0,0,104,26' dest='0,0,104,26'" hotimage="file='image/combo.png' source='0,26,104,52' dest='0,0,104,26'" pushedimage="file='image/combo.png' source='0,52,104,78' dest='0,0,104,26'">
+						<ListLabelElement text="短连接同步" height="28" selected="true"/>
+						<ListLabelElement text="短连接异步" height="28" />
+						<ListLabelElement text="长连接" height="28" />
+					</Combo>
+					<Control />
+					<Button name="tcp_send" text="发  送" width="90" height="34" font="0" textcolor="#FFFFFFFF" normalimage="file='image/button-ok.png' source='0,0,98,34'" hotimage="file='image/button-ok.png' source='98,0,196,34'" pushedimage="file='image/button-ok.png' source='196,0,294,34'" />
+					<HorizontalLayout />
+				</HorizontalLayout>
+				<HorizontalLayout height="24" inset="0,0,0,4">
+					<Label name="tcp_status" text="● 状态: 未连接" font="1" textcolor="#FFFFFFFF" />
+				</HorizontalLayout>
+				<Label text="发送数据" height="20" font="1" textcolor="#FFFFFFFF" />
+				<RichEdit name="tcp_data" multiline="true" autovscroll="true" rich="false" vscrollbar="true" hscrollbar="false" autohscroll="false" textcolor="#FFFFFFFF" bkcolor="#FF111827" bordercolor="#FF7A7A7A" bordersize="1"/>
+			</VerticalLayout>
+
+			<!-- ===== UDP Tab ===== -->
+			<VerticalLayout borderround="4,4" bkimage="image/control.png" inset="10,10,10,10">
+				<HorizontalLayout height="36" inset="0,0,0,8">
+					<Label text="Host" width="36" font="1" textcolor="#FFFFFFFF" align="center" />
+					<Edit name="udp_host" width="150" height="34" font="1" bkcolor="#FF313244" bordercolor="#FF45475A" bordersize="1" text="127.0.0.1" textcolor="#FFFFFFFF" />
+					<Label width="8" />
+					<Label text="Port" width="32" font="1" textcolor="#FFFFFFFF" align="center" />
+					<Edit name="udp_port" width="64" height="34" font="1" numberonly="true" bkcolor="#FF313244" bordercolor="#FF45475A" bordersize="1" text="9001" textcolor="#FFFFFFFF" />
+					<Control />
+					<Button name="udp_send" text="发  送" width="90" height="34" font="0" textcolor="#FFFFFFFF" normalimage="file='image/button-ok.png' source='0,0,98,34'" hotimage="file='image/button-ok.png' source='98,0,196,34'" pushedimage="file='image/button-ok.png' source='196,0,294,34'" />
+					<HorizontalLayout />
+				</HorizontalLayout>
+				<Label text="发送数据" height="20" font="1" textcolor="#FFFFFFFF" />
+				<RichEdit name="udp_data" multiline="true" autovscroll="true" rich="false" vscrollbar="true" hscrollbar="false" autohscroll="false" textcolor="#FFe5e7eb" bkcolor="#FF111827" bordercolor="#FF7A7A7A" bordersize="1"/>
+			</VerticalLayout>
+		</TabLayout>
+
+		<!-- ===== Divider ===== -->
+		<HorizontalLayout height="10" />
+
+		<!-- ===== Response Area ===== -->
+		<VerticalLayout borderround="4,4" bkimage="image/control.png" inset="10,10,10,10">
+		<HorizontalLayout height="28" >
+			<Label text="响应结果" font="3" textcolor="#FFFFFFFF" padding="0,2,0,0" />
+			<HorizontalLayout />
+			<Edit name="upgrade_url" width="220" height="24" font="1" bkcolor="#FF313244" bordercolor="#FF45475A" bordersize="1" text="https://127.0.0.1:18080/wup/" textcolor="#FFFFFFFF" />
+			<Label width="8" />
+			<Button name="check_upgrade" text="检测升级" width="80" height="24" font="1" textcolor="#FFFFFFFF" normalimage="file='image/button.png' source='0,0,98,34'" hotimage="file='image/button.png' source='98,0,196,34'" pushedimage="file='image/button.png' source='196,0,294,34'" />
+				<Label width="8" />
+				<Button name="copy_response" text="复制" width="60" height="24" font="1" textcolor="#FFFFFFFF" normalimage="file='image/button.png' source='0,0,98,34'" hotimage="file='image/button.png' source='98,0,196,34'" pushedimage="file='image/button.png' source='196,0,294,34'" />
+				<Label width="8" />
+				<Button name="clear_response" text="清空" width="60" height="24" font="1" textcolor="#FFFFFFFF" normalimage="file='image/button.png' source='0,0,98,34'" hotimage="file='image/button.png' source='98,0,196,34'" pushedimage="file='image/button.png' source='196,0,294,34'" />
+			</HorizontalLayout>
+			<RichEdit name="response" multiline="true" autovscroll="true" rich="false" vscrollbar="true" hscrollbar="false" autohscroll="false" readonly="true" textcolor="#FFFFFFFF" bkcolor="#FF111827" bordercolor="#FF7A7A7A" bordersize="1"/>
+		</VerticalLayout>
+	</VerticalLayout>
+</Window>

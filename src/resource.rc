@@ -1,0 +1,8 @@
+#include "resource.h"
+#include <windows.h>
+
+// Application icon
+IDI_APP_ICON ICON "app.ico"
+
+// Embedded zip containing skin.xml + images
+IDR_RESOURCES_ZIP RCDATA "resources.zip"

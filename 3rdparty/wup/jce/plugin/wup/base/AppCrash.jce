@@ -1,0 +1,34 @@
+module Base
+{
+    struct Crash
+	{
+		0 optional int 		       iTid;               // thread id
+		1 optional string          sTname;             // thread name
+		2 optional long            lTotalMemory;       // crash时的总内存
+		3 optional long            lAvailableMemory;   // crash时的可用内存
+		4 optional string          sType;              // 异常类型
+		5 optional string          stack;              // stack trace
+		6 optional string          sMessage;           // 附加信息
+		7 optional vector<byte>    vtDump;             // crash dump
+		8 optional int             iCount;             // 重复异常计数，异常类型 和 trace 类似
+		9 optional int             iGUIResourceCount;  //gui GUI句柄数
+		10 optional int            iOpenHandleCount;  //句柄数
+		11 optional string         sFiledDescription; //重现错误简短描述
+		12 optional string         sOperatingSystem; //操作系统
+		13 optional int            iOSIs64Bit;//操作系统位数
+		14 optional string 		   sDiskUsageInfo;//硬盘使用情况
+	};
+	
+	struct CrashList
+	{
+		0 require  vector<byte>  vGuid;
+		1 require  string        sXua;
+		2 require  string        sToken;
+		3 optional vector<Crash> vtCrashs;
+	};
+
+	interface AppCrash
+	{
+		int report(CrashList list);
+	};
+};
