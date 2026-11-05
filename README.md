@@ -1,6 +1,6 @@
 # net_api_test
 
-Postman 风格的轻量级网络接口调试工具，基于 duilib + libhv 开发，支持 HTTP / TCP / UDP 协议调试，并集成 WUP/Jce 协议的升级检测功能。
+风格的轻量级网络接口调试工具，基于 duilib + libhv 开发，支持 HTTP / TCP / UDP 协议调试，并集成 WUP/Jce 协议的升级检测功能。
 
 ## 功能概览
 
@@ -164,10 +164,3 @@ CheckUpgrade(hwnd, params, callback)
 - `GetCtrlText()` 返回 **UTF-8** 编码的 `std::string`
 - **中文字符串比较**必须使用宽字符（`CDuiString` + `_T()`），不能用 `std::string == "中文"`
 - **设置中文文本**必须用 `ctrl->SetText(_T("中文"))`，不能用 `SetCtrlText("name", "中文")`
-
-## 参考来源
-
-升级检测逻辑参考 `F:\workspace\AroundSoft\misc\Update\WupCheck.cpp`：
-- `deviceID` 和 `mac` 使用本机 MAC 地址（`GetLocalMac()`）
-- `xua` 动态构建（屏幕分辨率、OS 版本、渠道号等）
-- 响应检查 `rsp.ret`：`0` = 有新版本，`1` = 无新版本
